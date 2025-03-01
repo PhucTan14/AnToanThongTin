@@ -67,3 +67,23 @@ int main() {
 
     return 0;
 }
+
+
+bool check_date_month_year(int day, int month, int year) {
+    if (month < 1 || month > 12)
+        return false;
+    if (day < 1 || day > 31)
+        return false;
+
+    // Số ngày tối đa của mỗi tháng
+    int maxDaysInMonth[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+    // Kiểm tra năm nhuận
+    if (isLeapYear(year))
+        maxDaysInMonth[1] = 29;
+
+    // Kiểm tra ngày có hợp lệ với tháng hay không
+    if (day > maxDaysInMonth[month - 1])
+        return false;
+
+    return true;
